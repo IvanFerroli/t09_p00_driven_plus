@@ -1,0 +1,5 @@
+export const highLight = "#E8833A"
+export const darkBlue = "#126BA5"
+export const lightBlue = "#52B6FF"
+export const background = "#E5E5E5"
+export const white = "#FFFFFF"
