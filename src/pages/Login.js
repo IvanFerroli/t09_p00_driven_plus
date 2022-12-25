@@ -20,7 +20,11 @@ export default function Login () {
 		})	
         .then(res => {	
 			setAndPersistToken(res.data.token);	
-			navigate("/home")
+			if(res.data.membership !== null){
+				navigate("/home")
+			}else{
+				navigate("/subscriptions")
+			}
 			setDisabled(false)
 			})
         .catch(() => 

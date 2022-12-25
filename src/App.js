@@ -5,6 +5,7 @@ import { useContext, useState } from "react";
 import SignUp from "./pages/SignUp";
 import Login from "./pages/Login";
 import Home from "./pages/Home"
+import Subscriptions from "./pages/Subsciptions"
 
 import UserContext from "./contexts/UserContext";
 
@@ -27,6 +28,7 @@ function App() {
 						<Route path="/cadastro" element={<SignUp />} />
 						<Route path="/" element={<Login />} />
 						<Route path="/home" element={<Home />} />
+						<Route path="/subscriptions" element={<Subscriptions />} />
 					</Routes>
 				</BrowserRouter>
 			</UserContext.Provider>
