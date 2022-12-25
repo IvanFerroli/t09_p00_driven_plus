@@ -3,9 +3,11 @@ import axios from "axios";
 import { useNavigate, Link } from "react-router-dom"
 import { BASE_URL } from "../constants/urls";
 import UserContext from "../contexts/UserContext";
+import MembershipContext from "../contexts/MembershipContext";
 
 export default function Login () {
 	const { setAndPersistToken } = useContext(UserContext);
+	// const { setAndPersistMembership } = useContext(MembershipContext);
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
 	const [disabled, setDisabled] = useState(false);
@@ -20,6 +22,7 @@ export default function Login () {
 		})	
         .then(res => {	
 			setAndPersistToken(res.data.token);	
+			// setAndPersistMembership(res.data.membership);	
 			if(res.data.membership !== null){
 				navigate("/home")
 			}else{
