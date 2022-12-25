@@ -1,9 +1,11 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import axios from "axios";
 import { useNavigate, Link } from "react-router-dom"
 import { BASE_URL } from "../constants/urls";
+import UserContext from "../contexts/UserContext";
 
 export default function Login () {
+	const { setAndPersistToken } = useContext(UserContext);
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
 	const [disabled, setDisabled] = useState(false);
@@ -12,14 +14,15 @@ export default function Login () {
 	function fazerLogin (event) {
 		event.preventDefault();
 		setDisabled(true);
-		const req = axios.post(`${BASE_URL}auth/login`, {
+		const res = axios.post(`${BASE_URL}auth/login`, {
 			email: email,
 			password: password
-		})
-        .then(() => {
+		})	
+        .then(res => {	
+			setAndPersistToken(res.data.token);	
 			navigate("/home")
 			setDisabled(false)
-		})
+			})
         .catch(() => 
 		{alert("Deu ruim major")
 		setDisabled(false)

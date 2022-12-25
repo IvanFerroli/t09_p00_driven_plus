@@ -14,7 +14,7 @@ export default function SignUp () {
 	function fazerCadastro (event) {
 		event.preventDefault();
 		setDisabled(true);
-		const req = axios.post(`${BASE_URL}auth/sign-up`, {
+		const res = axios.post(`${BASE_URL}auth/sign-up`, {
 			email: email,
             name: name,
             cpf: cpf,
