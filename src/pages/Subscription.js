@@ -1,12 +1,14 @@
 import { useState, useEffect } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 import loading from "../assets/img/loading.gif";
 import { BASE_URL } from "../constants/urls"
 import SubscriptionForm from "../components/SubscriptionForm";
+import back from "../assets/img/back.png"
 
 
 export default function Sessions() {
+    const navigate = useNavigate()
     const tokenOnLocalStorage = localStorage.getItem("token");
     const [token] = useState(tokenOnLocalStorage);
 	const { subscriptionsId } = useParams();
@@ -40,7 +42,9 @@ export default function Sessions() {
 
 return (
     
-	<>
+	<>  <button onClick={() => {navigate("/subscriptions")}}>
+        <img src={back} alt="Back" />
+        </button>
         <img src={membershipImage} alt={membershipName}/>
         <h1>{membershipName}</h1>
         <h1>{membershipPrice}</h1>
