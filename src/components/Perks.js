@@ -7,9 +7,9 @@ export default function Perks() {
     console.log(membershipPerks.title)
 	return (
 		<>
-			{/* {membershipPerks.map((perk) => (
+			{/* {membershipPerks.map((perk, index) => (
 				<>
-					<a href={perk.link}>
+					<a key={index} href={perk.link}>
 						<button id={perk.id}>{perk.title}</button>
 					</a>
 				</>

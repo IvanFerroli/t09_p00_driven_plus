@@ -15,6 +15,10 @@ export default function SubscriptionForm() {
     const [confirmPurchase, setConfirmPurchase] = useState(false);
 	const [visibility, setVisibility] = useState(false)
 	const navigate = useNavigate();
+	const membershipPriceOnLocalStorage = localStorage.getItem("membershipPrice");
+	const [membershipPrice, setMembershipPrice] = useState(membershipPriceOnLocalStorage);
+	const membershipNameOnLocalStorage = localStorage.getItem("membershipName");
+	const [membershipName, setMembershipName] = useState(membershipNameOnLocalStorage);
 
 	const config = {
 		headers: { Authorization: `Bearer ${token}` },
@@ -29,34 +33,11 @@ export default function SubscriptionForm() {
 	};
 	
 	function confirmationModal() {
-		const StyledModal = styled.div`
-	position: absolute;
-	margin: 0;
-	display: ${props => props.visibility === true? 'flex' : 'none'};	
-    align-items: center;
-    font-size: 20px;
-    z-index: 2;
-	height: 30%;
-	width: 30%;
-	background-color: red;
-`
-
 		setVisibility(true)
-		alert(visibility)
-		return(
-			<StyledModal visibility={visibility}>
-				<h1>Confirma essa porra?</h1>
-				<div>
-					<button onClick={() => {setConfirmPurchase(true)}}>Sim caceta</button>
-					<button onClick={() => {setVisibility(false)}}>Não, vai tomar no cu</button>
-				</div>
-			</StyledModal>
-		)
 	}
 
 	function purchasePlan(event) {
 		event.preventDefault();
-		setVisibility(true)
 		confirmationModal() 
 
 		if(confirmPurchase === true) {
@@ -73,9 +54,19 @@ export default function SubscriptionForm() {
 		}
 	}
 
+	function funcaoTeste() {
+		prompt("jaca?")
+	}
+
 	return (
 		<>
-		{/* <StyledModal /> */}
+		<StyledModal visibility={visibility}>
+		<h1>Tem certeza que deseja assinar o plano {membershipName} por {membershipPrice}</h1>
+				<div>
+					<button onClick={() => {setVisibility(false)}}>NÃO</button>
+					<button onClick={() => {setConfirmPurchase(true)}}>SIM</button>
+				</div>
+		</StyledModal>
 		<form onSubmit={purchasePlan}>
 			<input
 				type="text"
@@ -110,5 +101,17 @@ export default function SubscriptionForm() {
 		</>
 	);
 }
+
+const StyledModal = styled.div`
+	position: absolute;
+	margin: 0;
+	display: ${props => props.visibility === true? 'flex' : 'none'};	
+    align-items: center;
+    font-size: 20px;
+    z-index: 2;
+	height: 30%;
+	width: 30%;
+	background-color: red;
+`
 
 
