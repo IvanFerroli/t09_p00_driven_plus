@@ -7,7 +7,7 @@ import SubscriptionForm from "../components/SubscriptionForm";
 import back from "../assets/img/back.png"
 
 
-export default function Sessions() {
+export default function Subscription() {
     const navigate = useNavigate()
     const tokenOnLocalStorage = localStorage.getItem("token");
     const [token] = useState(tokenOnLocalStorage);

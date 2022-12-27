@@ -27,9 +27,9 @@ export default function Login () {
 		localStorage.setItem("membershipPrice", membershipPrice);
 	}
    
-    function setAndPersistMembershipPerks(membershipPerks) {
-		localStorage.setItem("membershipPerks", membershipPerks);
-	}
+    // function setAndPersistMembershipPerks(membershipPerks) {
+	// 	localStorage.setItem("membershipPerks", membershipPerks);
+	// }
 
 	function fazerLogin (event) {
 		event.preventDefault();
@@ -44,7 +44,12 @@ export default function Login () {
 			setAndPersistMembershipImage(res.data.membership.image)
 			setAndPersistMembershipName(res.data.membership.name)
 			setAndPersistMembershipPrice(res.data.membership.price)
-			setAndPersistMembershipPerks(res.data.membership.perks)
+			console.log(res.data.membership.perks)
+			const arrayPerks = res.data.membership.perks;
+			/* setAndPersistMembershipPerks(res.data.membership.perks) */
+			// for(let i = 0; i < arrayPerks.length; i++) {
+			// 	setAndPersistMembershipPerks(...setAndPersistMembershipPerks, arrayPerks[i])
+			// }
 			if(res.data.membership !== null){
 				navigate("/home")
 			}else{
