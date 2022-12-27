@@ -29,6 +29,18 @@ export default function SubscriptionForm() {
 	};
 	
 	function confirmationModal() {
+		const StyledModal = styled.div`
+	position: absolute;
+	margin: 0;
+	display: ${props => props.visibility === true? 'flex' : 'none'};	
+    align-items: center;
+    font-size: 20px;
+    z-index: 2;
+	height: 30%;
+	width: 30%;
+	background-color: red;
+`
+
 		setVisibility(true)
 		alert(visibility)
 		return(
@@ -44,7 +56,7 @@ export default function SubscriptionForm() {
 
 	function purchasePlan(event) {
 		event.preventDefault();
-
+		setVisibility(true)
 		confirmationModal() 
 
 		if(confirmPurchase === true) {
@@ -62,10 +74,9 @@ export default function SubscriptionForm() {
 	}
 
 	return (
-		<form onSubmit={() => {
-			purchasePlan()
-			setVisibility(true)
-		}}>
+		<>
+		{/* <StyledModal /> */}
+		<form onSubmit={purchasePlan}>
 			<input
 				type="text"
 				placeholder="Nome impresso no cartão"
@@ -96,16 +107,8 @@ export default function SubscriptionForm() {
 			/>
 			<button type="submit">Assinar</button>
 		</form>
+		</>
 	);
 }
 
-const StyledModal = styled.div`
-	position: absolute;
-	margin: 0;
-	display: ${props => props.visibility === true? 'flex' : 'none'};	
-    align-items: center;
-    font-size: 20px;
-    z-index: 2;
-	height: 30%;
-	width: 30%;
-`
+
