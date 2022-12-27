@@ -26,7 +26,7 @@ export default function Footer() {
     return(
         <>
             <button onClick={() => {navigate("/subscriptions")}}>Mudar plano</button>
-            <button onClick={() => {alert(cancel)}}>Cancelar plano</button>
+            <button onClick={() => {cancel()}}>Cancelar plano</button>
         </>
     )
 }
