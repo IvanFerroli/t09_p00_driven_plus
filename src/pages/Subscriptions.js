@@ -5,7 +5,7 @@ import { useState, useEffect } from "react";
 import loading from "../assets/img/loading.gif";
 
 
-export default function Home(props) {
+export default function Subscriptions(props) {
     const tokenOnLocalStorage = localStorage.getItem("token");
     const [token] = useState(tokenOnLocalStorage);
     const [id, setId] = useState('');

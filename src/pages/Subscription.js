@@ -3,6 +3,7 @@ import { Link, useParams } from "react-router-dom";
 import axios from "axios";
 import loading from "../assets/img/loading.gif";
 import { BASE_URL } from "../constants/urls"
+import SubscriptionForm from "../components/SubscriptionForm";
 
 
 export default function Sessions() {
@@ -14,12 +15,27 @@ export default function Sessions() {
     const [membershipImage, setMembershipImage] = useState('');
     const [membershipPrice, setMembershipPrice] = useState('');
     const [membershipPerks, setMembershipPerks] = useState([]);
-    const [perkTitle, setPerkTitle] = useState('');
-    
-    // const perkId = membershipPerks.membershipId;
-    // const perkTitle = membershipPerks.title;
-    // const perkLink = membershipPerks.link;
 
+    function setAndPersistMembershipName(membershipName) {
+		setMembershipName(membershipName);
+		localStorage.setItem("membershipName", membershipName);
+	}
+
+    function setAndPersistMembershipImage(membershipImage) {
+		setMembershipImage(membershipImage);
+		localStorage.setItem("membershipImage", membershipImage);
+	}
+
+    function setAndPersistMembershipPrice(membershipPrice) {
+		setMembershipPrice(membershipPrice);
+		localStorage.setItem("membershipPrice", membershipPrice);
+	}
+
+    function setAndPersistMembershipPerks(membershipPerks) {
+		setMembershipPerks(token);
+		localStorage.setItem("membershipPerks", membershipPerks);
+	}
+    
     const config = {
         headers: { Authorization: `Bearer ${token}` },
       };
@@ -32,8 +48,6 @@ export default function Sessions() {
             setMembershipImage(res.data.image);
             setMembershipPrice(res.data.price);
             setMembershipPerks(res.data.perks);
-            console.log(res.data.perks);
-            setPerkTitle(res.data.perks[subscriptionsId -1].title);
 			})
         .catch(() => 
 		{alert("Deu ruim major")
@@ -45,6 +59,7 @@ export default function Sessions() {
 	}
 
 return (
+    
 	<>
         <img src={membershipImage} alt={membershipName}/>
         <h1>{membershipName}</h1>
@@ -56,6 +71,7 @@ return (
             <h1>{perk.id}</h1>
             </>
         ))}
+        <SubscriptionForm />
     </>
 )
 }
