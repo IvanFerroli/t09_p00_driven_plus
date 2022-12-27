@@ -11,14 +11,24 @@ export default function Login () {
 	const [disabled, setDisabled] = useState(false);
 	const navigate = useNavigate()
 
-	const [userName, setUserName] = useState("");
 	function setAndPersistUserName(userName) {
 		localStorage.setItem("userName", userName);
 	}
 	
-	const [membershipImage, setMembershipImage] = useState('');
     function setAndPersistMembershipImage(membershipImage) {
 		localStorage.setItem("membershipImage", membershipImage);
+	}
+
+	function setAndPersistMembershipName(membershipName) {
+		localStorage.setItem("membershipName", membershipName);
+	}
+    
+    function setAndPersistMembershipPrice(membershipPrice) {
+		localStorage.setItem("membershipPrice", membershipPrice);
+	}
+   
+    function setAndPersistMembershipPerks(membershipPerks) {
+		localStorage.setItem("membershipPerks", membershipPerks);
 	}
 
 	function fazerLogin (event) {
@@ -32,6 +42,9 @@ export default function Login () {
 			setAndPersistToken(res.data.token);	
 			setAndPersistUserName(res.data.name);
 			setAndPersistMembershipImage(res.data.membership.image)
+			setAndPersistMembershipName(res.data.membership.name)
+			setAndPersistMembershipPrice(res.data.membership.price)
+			setAndPersistMembershipPerks(res.data.membership.perks)
 			if(res.data.membership !== null){
 				navigate("/home")
 			}else{
