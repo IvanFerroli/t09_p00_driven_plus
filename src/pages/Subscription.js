@@ -44,10 +44,6 @@ export default function Sessions() {
 		const res = axios.get(`${BASE_URL}subscriptions/memberships/${subscriptionsId}`, config)	
         .then(res => {	
             setMembership(res.data)
-            setAndPersistMembershipPerks(res.data.perks)
-            setAndPersistMembershipPrice(res.data.price)
-            setAndPersistMembershipImage(res.data.image)
-            setAndPersistMembershipName(res.data.name)
 			})
         .catch(() => 
 		{alert("Deu ruim major")

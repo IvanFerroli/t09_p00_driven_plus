@@ -6,7 +6,6 @@ import UserContext from "../contexts/UserContext";
 
 export default function Login () {
 	const { setAndPersistToken } = useContext(UserContext);
-		
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
 	const [disabled, setDisabled] = useState(false);
@@ -17,6 +16,10 @@ export default function Login () {
 		localStorage.setItem("userName", userName);
 	}
 	
+	const [membershipImage, setMembershipImage] = useState('');
+    function setAndPersistMembershipImage(membershipImage) {
+		localStorage.setItem("membershipImage", membershipImage);
+	}
 
 	function fazerLogin (event) {
 		event.preventDefault();
@@ -28,6 +31,7 @@ export default function Login () {
         .then(res => {	
 			setAndPersistToken(res.data.token);	
 			setAndPersistUserName(res.data.name);
+			setAndPersistMembershipImage(res.data.membership.image)
 			if(res.data.membership !== null){
 				navigate("/home")
 			}else{
