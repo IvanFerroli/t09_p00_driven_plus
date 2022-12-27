@@ -38,24 +38,18 @@ export default function SubscriptionForm() {
 
 	function purchasePlan(event) {
 		event.preventDefault();
-		confirmationModal() 
+		confirmationModal();
+	}
 
-		if(confirmPurchase === true) {
-			const subRes = axios
+	function funcaoTeste() {
+		const res = axios
 			.post(`${BASE_URL}subscriptions`, body, config)
 			.then(() => {
-                console.log(subRes)
+                navigate("/home")
             })
 			.catch(() => {
 				alert("Deu ruim major");
 			});
-		}else{
-			navigate("/subscriptions")
-		}
-	}
-
-	function funcaoTeste() {
-		prompt("jaca?")
 	}
 
 	return (
@@ -64,7 +58,7 @@ export default function SubscriptionForm() {
 		<h1>Tem certeza que deseja assinar o plano {membershipName} por {membershipPrice}</h1>
 				<div>
 					<button onClick={() => {setVisibility(false)}}>NÃO</button>
-					<button onClick={() => {setConfirmPurchase(true)}}>SIM</button>
+					<button onClick={() => {funcaoTeste()}}>SIM</button>
 				</div>
 		</StyledModal>
 		<form onSubmit={purchasePlan}>
