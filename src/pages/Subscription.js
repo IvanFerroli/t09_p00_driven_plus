@@ -17,24 +17,24 @@ export default function Sessions() {
     const [membershipPerks, setMembershipPerks] = useState([]);
 
     function setAndPersistMembershipName(membershipName) {
-		setMembershipName(membershipName);
 		localStorage.setItem("membershipName", membershipName);
 	}
+    setAndPersistMembershipName()
 
     function setAndPersistMembershipImage(membershipImage) {
-		setMembershipImage(membershipImage);
 		localStorage.setItem("membershipImage", membershipImage);
 	}
+    setAndPersistMembershipImage()
 
     function setAndPersistMembershipPrice(membershipPrice) {
-		setMembershipPrice(membershipPrice);
 		localStorage.setItem("membershipPrice", membershipPrice);
 	}
+    setAndPersistMembershipPrice()
 
     function setAndPersistMembershipPerks(membershipPerks) {
-		setMembershipPerks(token);
 		localStorage.setItem("membershipPerks", membershipPerks);
 	}
+    setAndPersistMembershipPerks()
     
     const config = {
         headers: { Authorization: `Bearer ${token}` },

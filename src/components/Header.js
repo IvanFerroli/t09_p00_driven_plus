@@ -1,7 +1,7 @@
 import { useContext, useState } from "react";
 import avatar from "../assets/img/Vector.png"
 
-export default function Headers(props) {
+export default function Headers() {
     const userNameOnLocalStorage = localStorage.getItem("userName");
 	const [userName, setUserName] = useState(userNameOnLocalStorage);
     const membershipImageOnLocalStorage = localStorage.getItem("membershipImage");
