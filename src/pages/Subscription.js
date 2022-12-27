@@ -11,30 +11,30 @@ export default function Sessions() {
     const [token] = useState(tokenOnLocalStorage);
 	const { subscriptionsId } = useParams();
     const [membership, setMembership] = useState(undefined);
+    
     const [membershipName, setMembershipName] = useState('');
-    const [membershipImage, setMembershipImage] = useState('');
-    const [membershipPrice, setMembershipPrice] = useState('');
-    const [membershipPerks, setMembershipPerks] = useState([]);
-
     function setAndPersistMembershipName(membershipName) {
 		localStorage.setItem("membershipName", membershipName);
 	}
-    setAndPersistMembershipName()
+    
 
+    const [membershipImage, setMembershipImage] = useState('');
     function setAndPersistMembershipImage(membershipImage) {
 		localStorage.setItem("membershipImage", membershipImage);
 	}
-    setAndPersistMembershipImage()
+    
 
+    const [membershipPrice, setMembershipPrice] = useState('');
     function setAndPersistMembershipPrice(membershipPrice) {
 		localStorage.setItem("membershipPrice", membershipPrice);
 	}
-    setAndPersistMembershipPrice()
+   
 
+    const [membershipPerks, setMembershipPerks] = useState([]);
     function setAndPersistMembershipPerks(membershipPerks) {
 		localStorage.setItem("membershipPerks", membershipPerks);
 	}
-    setAndPersistMembershipPerks()
+    
     
     const config = {
         headers: { Authorization: `Bearer ${token}` },
@@ -44,10 +44,10 @@ export default function Sessions() {
 		const res = axios.get(`${BASE_URL}subscriptions/memberships/${subscriptionsId}`, config)	
         .then(res => {	
             setMembership(res.data)
-			setMembershipName(res.data.name);	
-            setMembershipImage(res.data.image);
-            setMembershipPrice(res.data.price);
-            setMembershipPerks(res.data.perks);
+            setAndPersistMembershipPerks(res.data.perks)
+            setAndPersistMembershipPrice(res.data.price)
+            setAndPersistMembershipImage(res.data.image)
+            setAndPersistMembershipName(res.data.name)
 			})
         .catch(() => 
 		{alert("Deu ruim major")

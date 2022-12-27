@@ -16,7 +16,7 @@ export default function Login () {
 	function setAndPersistUserName(userName) {
 		localStorage.setItem("userName", userName);
 	}
-	setAndPersistUserName()
+	
 
 	function fazerLogin (event) {
 		event.preventDefault();
