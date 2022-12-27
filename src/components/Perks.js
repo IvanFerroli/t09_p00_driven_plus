@@ -1,8 +1,9 @@
-export default function Perks(props) {
-	const perks = props.perks;
+export default function Perks() {
+	const membershipPerksOnLocalStorage = localStorage.getItem("membershipPerks");
+    const [membershipPerks, setMembershipPerks] = useState(membershipPerksOnLocalStorage);
 	return (
 		<>
-			{perks.map((perk) => (
+			{membershipPerks.map((perk) => (
 				<>
 					<a href={perk.link}>
 						<button id={perk.id}>{perk.title}</button>

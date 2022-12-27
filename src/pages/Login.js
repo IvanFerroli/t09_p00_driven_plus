@@ -12,6 +12,12 @@ export default function Login () {
 	const [disabled, setDisabled] = useState(false);
 	const navigate = useNavigate()
 
+	const [userName, setUserName] = useState("");
+	function setAndPersistUserName(userName) {
+		setUserName(userName);
+		localStorage.setItem("userName", userName);
+	}
+
 	function fazerLogin (event) {
 		event.preventDefault();
 		setDisabled(true);
@@ -21,6 +27,7 @@ export default function Login () {
 		})	
         .then(res => {	
 			setAndPersistToken(res.data.token);	
+			setAndPersistUserName(res.data.name);
 			if(res.data.membership !== null){
 				navigate("/home")
 			}else{
