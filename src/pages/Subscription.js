@@ -11,12 +11,10 @@ export default function Sessions() {
     const [token] = useState(tokenOnLocalStorage);
 	const { subscriptionsId } = useParams();
     const [membership, setMembership] = useState(undefined);
-    
     const [membershipName, setMembershipName] = useState('');
     const [membershipImage, setMembershipImage] = useState('');
     const [membershipPrice, setMembershipPrice] = useState('');
     const [membershipPerks, setMembershipPerks] = useState([]);
-   
     
     const config = {
         headers: { Authorization: `Bearer ${token}` },
@@ -26,6 +24,10 @@ export default function Sessions() {
 		const res = axios.get(`${BASE_URL}subscriptions/memberships/${subscriptionsId}`, config)	
         .then(res => {	
             setMembership(res.data)
+			setMembershipName(res.data.name);	
+            setMembershipImage(res.data.image);
+            setMembershipPrice(res.data.price);
+            setMembershipPerks(res.data.perks);
 			})
         .catch(() => 
 		{alert("Deu ruim major")
