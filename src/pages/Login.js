@@ -10,7 +10,7 @@ export default function Login () {
 	const [password, setPassword] = useState("");
 	const [disabled, setDisabled] = useState(false);
 	const navigate = useNavigate()
-
+	
 	function setAndPersistUserName(userName) {
 		localStorage.setItem("userName", userName);
 	}
@@ -27,9 +27,9 @@ export default function Login () {
 		localStorage.setItem("membershipPrice", membershipPrice);
 	}
    
-    // function setAndPersistMembershipPerks(membershipPerks) {
-	// 	localStorage.setItem("membershipPerks", membershipPerks);
-	// }
+     function setAndPersistMembershipPerksTitle(membershipPerksTitle) {
+		localStorage.setItem("membershipPerksTitle", membershipPerksTitle);
+	 }
 
 	function fazerLogin (event) {
 		event.preventDefault();
@@ -46,10 +46,13 @@ export default function Login () {
 			setAndPersistMembershipPrice(res.data.membership.price)
 			console.log(res.data.membership.perks)
 			const arrayPerks = res.data.membership.perks;
-			/* setAndPersistMembershipPerks(res.data.membership.perks) */
-			// for(let i = 0; i < arrayPerks.length; i++) {
-			// 	setAndPersistMembershipPerks(...setAndPersistMembershipPerks, arrayPerks[i])
-			// }
+			var arrayPerksTitle = [];
+			//setAndPersistMembershipPerks(arrayPerks) 
+			 for(let i = 0; i < arrayPerks.length; i++) {
+				var title = arrayPerks[i].title;
+				arrayPerksTitle.push(title);
+			//setAndPersistMembershipPerksTitle(...arrayPerksTitle, title)
+			}
 			if(res.data.membership !== null){
 				navigate("/home")
 			}else{

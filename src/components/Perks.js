@@ -1,10 +1,10 @@
 import { useContext, useState } from "react";
 
 export default function Perks() {
-	const membershipPerksOnLocalStorage = localStorage.getItem("membershipPerks");
-    const [membershipPerks, setMembershipPerks] = useState(membershipPerksOnLocalStorage);
+	const membershipPerksTitleOnLocalStorage = localStorage.getItem("membershipPerksTitle");
+    const [membershipPerksTitle, setMembershipPerksTitle] = useState(membershipPerksTitleOnLocalStorage);
         
-    console.log(membershipPerks.title)
+    console.log(membershipPerksTitle)
 	return (
 		<>
 			{/* {membershipPerks.map((perk) => (
